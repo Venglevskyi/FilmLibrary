@@ -13,10 +13,23 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+// .container {
+//   max-width: 120rem;
+//   text-align: center;
+//   margin: 0 auto;
+// }
+
 .container {
-  max-width: 120rem;
-  text-align: center;
+  width: 298px;
   margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 640px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1000px;
+  }
 }
 
 .list {
