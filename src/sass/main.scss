@@ -2,10 +2,11 @@
  * Все паршалы импортировать в этот файл
  */
 
- @import './libs/fonts';
- @import './libs/vars';
- @import './normalize.scss';
- 
- 
- @import './base.scss';
- @import './homePage.scss';
+@import './libs/fonts';
+@import './libs/vars';
+@import './normalize.scss';
+
+@import './base.scss';
+@import './header.scss';
+@import './homePage.scss';
+@import './footer.scss';

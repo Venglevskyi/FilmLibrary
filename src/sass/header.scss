@@ -1,0 +1,48 @@
+.header-container {
+  max-width: 320px;
+  background-color: $main-background-color;
+}
+
+.site-nav {
+  
+  margin: 0 auto;
+}
+
+.site-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 30px 20px;
+  text-transform: uppercase;
+  font-family: $main-font-stack;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.site-menu__item {
+  margin-right: 20px;
+  position: relative;
+}
+
+.site-menu__item:last-child {
+  margin-right: 0;
+}
+
+.site-menu__item_list::after {
+  content: '';
+  background: $font-inverse-color;
+  display: block;
+  height: 3px;
+  position: absolute;
+  left: 50%;
+  width: 0;
+  transform: translateX(-50%);
+  transition: width 0.2s linear;
+  margin-top: 12px;
+}
+
+.site-menu__item_list:hover::after,
+.site-menu__item_list:focus::after {
+  width: 100px;
+}
