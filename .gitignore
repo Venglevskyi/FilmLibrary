@@ -9,7 +9,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # build artifacts
-build/
 
 # Runtime data
 pids
