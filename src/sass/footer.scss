@@ -1,14 +1,16 @@
 footer {
-  display: block;
-  margin: 0 auto;
-  max-width: 320px;
   background-color: $main-background-color;
 }
 
 .text-title {
-  text-align: center;
+  text-align: right;
+  padding: 36px 60px 36px;
   font-family: $main-font-stack;
   font-weight: 500;
   font-size: 14px;
+  color: #372c48;
   margin: 0;
+  @media screen and (min-width: 1200px) {
+    padding-right: 0;
+  }
 }
