@@ -1,4 +1,6 @@
 footer {
+  display: block;
+  margin: 0 auto;
   max-width: 320px;
   background-color: $main-background-color;
 }
@@ -8,4 +10,5 @@ footer {
   font-family: $main-font-stack;
   font-weight: 500;
   font-size: 14px;
+  margin: 0;
 }
