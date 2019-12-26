@@ -2,6 +2,13 @@
  * Все паршалы импортировать в этот файл
  */
 
+@import './libs/fonts';
+@import './libs/vars';
 @import './normalize.scss';
+
 @import './base.scss';
-@import './imgPoster.scss';
+@import './header.scss';
+@import './homePage.scss';
+@import './detailsPage.scss';
+@import './myFilmLibraryPage.scss';
+@import './footer.scss';
