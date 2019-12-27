@@ -7,6 +7,7 @@ function parseData(data) {
         return `<li class="films-list__item">
         <a class="films-list__item__block" href="#">
           <img
+          class="films-list__image"
             src="${imgUrl}${e.poster_path ? e.poster_path : e.backdrop_path}"
             alt="Here's how it looks!"
             width="298"
