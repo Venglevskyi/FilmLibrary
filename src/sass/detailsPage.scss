@@ -1,0 +1,43 @@
+
+.detailsPage {
+  display: none;
+}
+
+.detailsPage__container {
+  padding: 2.5rem;
+}
+
+figure {
+  margin: 0 0 2rem;
+  max-width: 100%;
+}
+
+.poster {
+  width: 27.5rem;
+  height: auto;
+}
+
+table {
+  font-family: $main-font-stack;
+  font-size: 1.4rem;
+  border-collapse: collapse;
+  margin-bottom: 3rem;
+}
+
+td {
+  padding: 1rem;
+}
+
+tr:nth-child(odd) {
+  background: $main-background-color;
+}
+
+td:nth-child(odd) {
+  padding-right: 0;
+}
+
+td:nth-child(even) {
+  padding-left: 3rem;
+  padding-right: 0;
+}
+
