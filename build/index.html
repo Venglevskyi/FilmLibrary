@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FilmLibrary</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>    
+    <header class="site-header">
+      <div class="header-container container">
+        <a href="#">
+          <img src="../images/icons/icon-film.png" alt="" />
+        </a>
+        <nav>
+          <ul class="site-menu">
+            <li class="site-menu__item list">
+              <a class="link site-menu__item_list" href="#">home</a>
+            </li>
+            <li class="site-menu__item list">
+              <a class="link site-menu__item_list" href="#">my library</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="homepage">
+      <form action="#" class="searchform">
+        <label for="#" class="searchform__field"
+          ><input
+            type="text"
+            class="searchform__field__input"
+            placeholder="Write movie name and click Enter"
+          />
+        </label>
+      </form>
+      <div class="container">
+        <ul class="films-list">
+          <li class="films-list__item">
+            <a class="films-list__item__block" href="#">
+              <img
+                src="../images/film-preview/poster1.png"
+                alt="Here's how it looks!"
+                width="298"
+                height="156"
+              />
+              <p class="films-list__item__block__filmname">Темные времена (2017)</p>
+            </a>
+          </li>
+          <li class="films-list__item">
+            <a class="films-list__item__block" href="#">
+              <img
+                src="../images/film-preview/poster2.png"
+                alt="Here's how it looks!"
+                width="298"
+                height="156"
+              />
+              <p class="films-list__item__block__filmname">
+                Приключения Паддингтона 2 (2017)
+              </p>
+            </a>
+          </li>
+          <li class="films-list__item">
+            <a class="films-list__item__block" href="#">
+              <img
+                src="../images/film-preview/poster3.png"
+                alt="Here's how it looks!"
+                width="298"
+                height="156"
+              />
+              <p class="films-list__item__block__filmname">Атлантида (2017)</p>
+            </a>
+          </li>
+          <li class="films-list__item">
+            <a class="films-list__item__block" href="#">
+              <img
+                src="../images/film-preview/poster4.png"
+                alt="Here's how it looks!"
+                width="298"
+                height="156"
+              />
+              <p class="films-list__item__block__filmname">Большая игра (2017)</p>
+            </a>
+          </li>
+          <li class="films-list__item">
+            <a class="films-list__item__block" href="#">
+              <img
+                src="../images/film-preview/poster5.png"
+                alt="Here's how it looks!"
+                width="298"
+                height="156"
+              />
+              <p class="films-list__item__block__filmname">Лига справедливости (2017)</p>
+            </a>
+          </li>
+          <li class="films-list__item">
+            <a class="films-list__item__block" href="#">
+              <img
+                src="../images/film-preview/poster6.png"
+                alt="Here's how it looks!"
+                width="298"
+                height="156"
+              />
+              <p class="films-list__item__block__filmname">Атлантида (2017)</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="pagination">
+        <button class="pagination__btn" type="button"><span>Prev</span></button>
+        <div class="pagination__page"><span>1</span></div>
+        <button class="pagination__btn" type="button"><span>Next</span></button>
+      </div>
+    </section>
+    <section class="detailsPage">
+      <div class="detailsPage__container">
+        <figure>
+          <img class="poster" src="./images/film.png" alt="film-poster" />
+        </figure>
+        <h2 class="title">Dumbo (2019)</h2>
+        <table>
+          <tr>
+            <td>vote / votes</td>
+            <td>6.5 / 1422</td>
+          </tr>
+          <tr>
+            <td>original title</td>
+            <td>Dumbo</td>
+          </tr>
+          <tr>
+            <td>popularity</td>
+            <td>100.2</td>
+          </tr>
+          <tr>
+            <td>genre</td>
+            <td>drama, geography, history</td>
+          </tr>
+        </table>
+        <h2 class="title">About</h2>
+        <p class="text">
+          A young elephant, whose oversized ears enable him to fly, helps save a
+          struggling circus, but when the circus plans a new venture, Dumbo and his
+          friends discover dark secrets beneath its shiny veneer.
+        </p>
+      </div>
+    </section>
+    
+    <footer>
+      <div class="container">
+        <p class="text-title">Made by Wind Group</p>
+      </div>
+    </footer>
+    <button type="button" class="back-to-top"></button>
+  </body>
+</html>
