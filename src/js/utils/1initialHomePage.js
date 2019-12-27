@@ -17,7 +17,7 @@ const popularFilmsData = {
   },
 };
 
-function renderPopularList(data) {
+function renderList(data) {
   popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
 }
 
@@ -27,4 +27,3 @@ document.addEventListener(
 );
 popularityRefs.btnPrev.addEventListener('click', prevPage);
 popularityRefs.btnNext.addEventListener('click', nextPage);
-

@@ -1,17 +1,23 @@
+window.onload = function() {
+  const refsFilmData = {
+    userSelectFilm: document.querySelector('.films-list__image'),
+  };
+  console.log(refsFilmData.userSelectFilm);
+};
 
 const baseUrl =
-'https://api.themoviedb.org/3/movie/343611?api_key=bd2cd46f09d0c01b4fe8699d010953c1';
+  'https://api.themoviedb.org/3/movie/343611?api_key=bd2cd46f09d0c01b4fe8699d010953c1';
+const imgUrl = 'https://image.tmdb.org/t/p/w200';
 
 function getData() {
-  fetch(baseUrl, options)
-  .then(response => response.json())
-  .then(data => parseFilmData(data));
+  fetch(baseUrl)
+    .then(response => response.json())
+    .then(data => parseFilmData(data));
 }
 
 function parseFilmData(data) {
   console.log(data);
-  const element =
-  `<section class="detailsPage">
+  const element = `<section class="detailsPage">
   <div class="detailsPage__container">
   <figure>
   <img class="poster" src="${imgUrl}${data.poster_path}" alt="film-poster" />
@@ -40,16 +46,7 @@ function parseFilmData(data) {
   ${data.overview}
   </p>
   </div>
-  </section>`;   
-  
-  console.log(element);
+  </section>`;
 }
 
-  const filmRefs = {
-    filmList: document.querySelectorAll('.films-list__image'),
-  }
-  
-  console.log(filmRefs.filmList)
-
-
-// filmRefs.filmList.addEventListener('click', getData)
+getData();
