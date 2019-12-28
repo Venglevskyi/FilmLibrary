@@ -13,13 +13,9 @@ const popularFilmsData = {
   getDataPopularFilms() {
     fetch(`${popularityFilms}&page=${this.page}`)
       .then(response => response.json())
-      .then(data => parseData(data.results));
+      .then(data => parseData(data.results)).catch(error => console.error(error));
   },
 };
-
-function renderList(data) {
-  popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
-}
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -27,3 +23,4 @@ document.addEventListener(
 );
 popularityRefs.btnPrev.addEventListener('click', prevPage);
 popularityRefs.btnNext.addEventListener('click', nextPage);
+

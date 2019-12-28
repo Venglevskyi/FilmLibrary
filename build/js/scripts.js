@@ -14,14 +14,11 @@ var popularFilmsData = {
       return response.json();
     }).then(function (data) {
       return parseData(data.results);
+    }).catch(function (error) {
+      return console.error(error);
     });
   }
 };
-
-function renderList(data) {
-  popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
-}
-
 document.addEventListener('DOMContentLoaded', popularFilmsData.getDataPopularFilms());
 popularityRefs.btnPrev.addEventListener('click', prevPage);
 popularityRefs.btnNext.addEventListener('click', nextPage);
@@ -40,21 +37,23 @@ var findSettings = {
       return response.json();
     }).then(function (data) {
       return parseData(data.results);
+    }).catch(function (error) {
+      return console.error(error);
     });
   }
 };
 
 function getInputValue(e) {
   e.preventDefault();
-  console.log(e.srcElement.value);
   var inputValue = e.srcElement.value;
   findSettings.serchQuery = inputValue;
-  clearList();
-  findSettings.searchFromDB(inputValue);
 
   if (findSettings.serchQuery.length === 0) {
     popularFilmsData.getDataPopularFilms();
+    return;
   }
+
+  findSettings.searchFromDB(inputValue);
 }
 
 function renderFilmSerchList(data) {
@@ -69,15 +68,13 @@ var pageRefs = {
 };
 
 function prevPage() {
-  if (findSettings.serchQuery.length > 1) {
-    clearList();
+  if (findSettings.page > 1) {
     findSettings.page -= 1;
     pageRefs.pagPage.textContent = findSettings.page;
     findSettings.searchFromDB(findSettings.serchQuery);
-  }
+  } else return;
 
   if (popularFilmsData.page > 1) {
-    clearList();
     popularFilmsData.page -= 1;
     popularityRefs.pagPage.textContent = popularFilmsData.page;
     popularFilmsData.getDataPopularFilms();
@@ -85,8 +82,6 @@ function prevPage() {
 }
 
 function nextPage() {
-  clearList();
-
   if (findSettings.serchQuery.length >= 1) {
     findSettings.page += 1;
     pageRefs.pagPage.textContent = findSettings.page;
@@ -99,30 +94,59 @@ function nextPage() {
 }
 "use strict";
 
-window.onload = function () {
-  var refsFilmData = {
-    userSelectFilm: document.querySelector('.films-list__image')
-  };
-  console.log(refsFilmData.userSelectFilm);
+var refsFilmData = {
+  userInput: document.querySelector('.films-list'),
+  modal: document.querySelector('.modal'),
+  modalGuts: document.querySelector('.modal-guts'),
+  body: document.querySelector('body')
 };
 
-var baseUrl = 'https://api.themoviedb.org/3/movie/343611?api_key=bd2cd46f09d0c01b4fe8699d010953c1';
-var imgUrl = 'https://image.tmdb.org/t/p/w200';
+function getUserInput(e) {
+  if (e.target === e.currentTarget) return;
+  console.log(e.target.id);
+  var filmID = e.target.id;
+  getData(filmID);
+}
 
-function getData() {
-  fetch(baseUrl).then(function (response) {
+console.log(refsFilmData.userInput);
+refsFilmData.userInput.addEventListener('click', getUserInput);
+var baseUrl = 'https://api.themoviedb.org/3/movie/';
+var apiKey = '?api_key=bd2cd46f09d0c01b4fe8699d010953c1&language=ru';
+var imgFilmUrl = 'https://image.tmdb.org/t/p/w200';
+
+function getData(filmId) {
+  fetch("".concat(baseUrl).concat(filmId).concat(apiKey)).then(function (response) {
     return response.json();
   }).then(function (data) {
     return parseFilmData(data);
+  }).catch(function (error) {
+    return console.error(error);
   });
 }
 
 function parseFilmData(data) {
-  console.log(data);
-  var element = "<section class=\"detailsPage\">\n  <div class=\"detailsPage__container\">\n  <figure>\n  <img class=\"poster\" src=\"".concat(imgUrl).concat(data.poster_path, "\" alt=\"film-poster\" />\n  </figure>\n  <h2 class=\"title\">").concat(data.title, "</h2>\n  <table>\n  <tr>\n  <td>vote / votes</td>\n  <td>").concat(data.vote_average, " / ").concat(data.vote_count, "</td>\n  </tr>\n  <tr>\n  <td>original title</td>\n  <td>").concat(data.original_title, "</td>\n  </tr>\n  <tr>\n  <td>popularity</td>\n  <td>").concat(data.popularity, "</td>\n  </tr>\n  <tr>\n  <td>genre</td>\n  <td>").concat(data.genres[0].name, "</td>\n  </tr>\n  </table>\n  <h2 class=\"title\">About</h2>\n  <p class=\"text\">\n  ").concat(data.overview, "\n  </p>\n  </div>\n  </section>");
+  var element = "<section class=\"detailsPage\">\n  <div class=\"detailsPage__container\">\n  <figure>\n  <img class=\"poster\" src=\"".concat(imgFilmUrl).concat(data.poster_path, "\" alt=\"film-poster\" />\n  </figure>\n  <h2 class=\"title\">").concat(data.title, "</h2>\n  <table>\n  <tr>\n  <td>vote / votes</td>\n  <td>").concat(data.vote_average, " / ").concat(data.vote_count, "</td>\n  </tr>\n  <tr>\n  <td>original title</td>\n  <td>").concat(data.original_title, "</td>\n  </tr>\n  <tr>\n  <td>popularity</td>\n  <td>").concat(data.popularity, "</td>\n  </tr>\n  <tr>\n  <td>genre</td>\n  <td>").concat(data.genres[0].name, "</td>\n  </tr>\n  </table>\n  <h2 class=\"title\">About</h2>\n  <p class=\"text\">\n  ").concat(data.overview, "\n  </p>\n  </div>\n  </section>");
+  var objToString = element.toString();
+  openModalWindow();
+  renderListElement(objToString);
 }
 
-getData();
+function openModalWindow() {
+  refsFilmData.modal.classList.add('visible');
+}
+
+function renderListElement(data) {
+  refsFilmData.modalGuts.innerHTML = '';
+  refsFilmData.modalGuts.insertAdjacentHTML('afterbegin', data);
+}
+
+function closeModal(e) {
+  if (e.target !== e.currentTarget) {
+    refsFilmData.modal.classList.remove('visible');
+  }
+}
+
+refsFilmData.modal.addEventListener('click', closeModal);
 "use strict";
 
 var refs = {
@@ -137,8 +161,15 @@ function clearList() {
 var imgUrl = 'https://image.tmdb.org/t/p/w200';
 
 function parseData(data) {
+  console.log(data);
   var elements = data.map(function (e) {
-    return "<li class=\"films-list__item\">\n        <a class=\"films-list__item__block\" href=\"#\">\n          <img\n          class=\"films-list__image\"\n          id=\"1\"\n            src=\"".concat(imgUrl).concat(e.poster_path ? e.poster_path : e.backdrop_path, "\"\n            alt=\"Here's how it looks!\"\n            width=\"298\"\n            height=\"156\"\n          />\n          <p class=\"films-list__item__block__filmname\">").concat(e.title, "</p>\n        </a>\n      </li>");
+    return "<li \" class=\"films-list__item\">\n        <a id=\"".concat(e.id, "\" class=\"films-list__item__block\" href=\"#\">\n          <img\n          class=\"films-list__image\"\n            src=\"").concat(imgUrl).concat(e.poster_path ? e.poster_path : e.backdrop_path, "\"\n            alt=\"Here's how it looks!\"\n            width=\"298\"\n            height=\"156\"\n          />\n          <p class=\"films-list__item__block__filmname\">").concat(e.title, "</p>\n        </a>\n      </li>");
   }).join('');
   renderList(elements);
+}
+"use strict";
+
+function renderList(data) {
+  clearList();
+  popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
 }
