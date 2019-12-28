@@ -3,14 +3,12 @@ const pageRefs = {
 };
 
 function prevPage() {
-  if (findSettings.serchQuery.length > 1) {
-    clearList();
+  if (findSettings.page > 1) {
     findSettings.page -= 1;
     pageRefs.pagPage.textContent = findSettings.page;
     findSettings.searchFromDB(findSettings.serchQuery);
-  }
-  if (popularFilmsData.page > 1) {
-    clearList();
+  } else return
+   if (popularFilmsData.page > 1) {
     popularFilmsData.page -= 1;
     popularityRefs.pagPage.textContent = popularFilmsData.page;
     popularFilmsData.getDataPopularFilms();
@@ -18,7 +16,6 @@ function prevPage() {
 }
 
 function nextPage() {
-  clearList();
   if (findSettings.serchQuery.length >= 1) {
     findSettings.page += 1;
     pageRefs.pagPage.textContent = findSettings.page;

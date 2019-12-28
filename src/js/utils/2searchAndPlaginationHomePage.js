@@ -13,20 +13,20 @@ const findSettings = {
   searchFromDB(serchQuery) {
     fetch(`${serchUrl}${serchQuery}&page=${this.page}`)
       .then(response => response.json())
-      .then(data => parseData(data.results));
+      .then(data => parseData(data.results))
+      .catch(error => console.error(error));
   },
 };
 
 function getInputValue(e) {
   e.preventDefault();
-  console.log(e.srcElement.value);
   const inputValue = e.srcElement.value;
   findSettings.serchQuery = inputValue;
-  clearList();
-  findSettings.searchFromDB(inputValue);
   if (findSettings.serchQuery.length === 0) {
     popularFilmsData.getDataPopularFilms();
+    return;
   }
+  findSettings.searchFromDB(inputValue);
 }
 
 function renderFilmSerchList(data) {
