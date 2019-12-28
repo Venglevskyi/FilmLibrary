@@ -1,7 +1,6 @@
 const imgUrl = 'https://image.tmdb.org/t/p/w200';
 
 function parseData(data) {
-  console.log(data);
   const elements = data
     .map(e => {
       return `<li " class="films-list__item">

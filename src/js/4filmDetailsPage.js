@@ -7,12 +7,10 @@ const refsFilmData = {
 
 function getUserInput(e) {
   if (e.target === e.currentTarget) return;
-  console.log(e.target.id);
   const filmID = e.target.id;
   getData(filmID);
 }
 
-console.log(refsFilmData.userInput);
 refsFilmData.userInput.addEventListener('click', getUserInput);
 
 const baseUrl = 'https://api.themoviedb.org/3/movie/';
@@ -61,4 +59,3 @@ function parseFilmData(data) {
   popularFilmsData.flag = true;
   renderList(objToString);
 }
-

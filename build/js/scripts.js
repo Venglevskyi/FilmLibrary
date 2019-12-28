@@ -72,6 +72,7 @@ var pageRefs = {
 function prevPage() {
   if (popularFilmsData.flag) {
     clearList();
+    popularFilmsData.flag = false;
     popularityRefs.pagPage.classList.remove('hidden'), popularityRefs.btnNext.classList.remove('hidden');
     popularityRefs.filmsList.appendChild(popularFilmsData.copyDomElement);
   }
@@ -113,12 +114,10 @@ var refsFilmData = {
 
 function getUserInput(e) {
   if (e.target === e.currentTarget) return;
-  console.log(e.target.id);
   var filmID = e.target.id;
   getData(filmID);
 }
 
-console.log(refsFilmData.userInput);
 refsFilmData.userInput.addEventListener('click', getUserInput);
 var baseUrl = 'https://api.themoviedb.org/3/movie/';
 var apiKey = '?api_key=bd2cd46f09d0c01b4fe8699d010953c1&language=ru';
@@ -154,7 +153,6 @@ function clearList() {
 var imgUrl = 'https://image.tmdb.org/t/p/w200';
 
 function parseData(data) {
-  console.log(data);
   var elements = data.map(function (e) {
     return "<li \" class=\"films-list__item\">\n        <a id=\"".concat(e.id, "\" class=\"films-list__item__block\" href=\"#\">\n          <img\n          class=\"films-list__image\"\n            src=\"").concat(imgUrl).concat(e.poster_path ? e.poster_path : e.backdrop_path, "\"\n            alt=\"Here's how it looks!\"\n            width=\"298\"\n            height=\"156\"\n          />\n          <p class=\"films-list__item__block__filmname\">").concat(e.title, "</p>\n        </a>\n      </li>");
   }).join('');
@@ -164,7 +162,6 @@ function parseData(data) {
 
 function renderList(data) {
   popularFilmsData.copyDomElement = popularityRefs.filmsList.cloneNode(true);
-  console.log(popularFilmsData.copyDomElement);
   clearList();
   popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
 

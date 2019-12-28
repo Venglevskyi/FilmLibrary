@@ -5,6 +5,7 @@ const pageRefs = {
 function prevPage() {
   if(popularFilmsData.flag){
     clearList();
+    popularFilmsData.flag = false;
     popularityRefs.pagPage.classList.remove('hidden'),
     popularityRefs.btnNext.classList.remove('hidden')
     popularityRefs.filmsList.appendChild(popularFilmsData.copyDomElement)
