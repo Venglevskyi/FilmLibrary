@@ -3,11 +3,17 @@ const pageRefs = {
 };
 
 function prevPage() {
+  if(popularFilmsData.flag){
+    clearList();
+    popularityRefs.pagPage.classList.remove('hidden'),
+    popularityRefs.btnNext.classList.remove('hidden')
+    popularityRefs.filmsList.appendChild(popularFilmsData.copyDomElement)
+  }
   if (findSettings.page > 1) {
     findSettings.page -= 1;
     pageRefs.pagPage.textContent = findSettings.page;
     findSettings.searchFromDB(findSettings.serchQuery);
-  } else return;
+  };
   if (popularFilmsData.page > 1) {
     popularFilmsData.page -= 1;
     popularityRefs.pagPage.textContent = popularFilmsData.page;
@@ -16,6 +22,7 @@ function prevPage() {
 }
 
 function nextPage() {
+
   if (findSettings.serchQuery.length >= 1) {
     findSettings.page += 1;
     pageRefs.pagPage.textContent = findSettings.page;

@@ -10,6 +10,8 @@ const popularityFilms =
 
 const popularFilmsData = {
   page: 1,
+  copyDomElement: '',
+  flag: false,
   getDataPopularFilms() {
     fetch(`${popularityFilms}&page=${this.page}`)
       .then(response => response.json())

@@ -9,6 +9,8 @@ var popularityRefs = {
 var popularityFilms = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=bd2cd46f09d0c01b4fe8699d010953c1&language=ru';
 var popularFilmsData = {
   page: 1,
+  copyDomElement: '',
+  flag: false,
   getDataPopularFilms: function getDataPopularFilms() {
     fetch("".concat(popularityFilms, "&page=").concat(this.page)).then(function (response) {
       return response.json();
@@ -68,11 +70,19 @@ var pageRefs = {
 };
 
 function prevPage() {
+  if (popularFilmsData.flag) {
+    clearList();
+    popularityRefs.pagPage.classList.remove('hidden'), popularityRefs.btnNext.classList.remove('hidden');
+    popularityRefs.filmsList.appendChild(popularFilmsData.copyDomElement);
+  }
+
   if (findSettings.page > 1) {
     findSettings.page -= 1;
     pageRefs.pagPage.textContent = findSettings.page;
     findSettings.searchFromDB(findSettings.serchQuery);
-  } else return;
+  }
+
+  ;
 
   if (popularFilmsData.page > 1) {
     popularFilmsData.page -= 1;
@@ -127,26 +137,9 @@ function getData(filmId) {
 function parseFilmData(data) {
   var element = "<section class=\"detailsPage\">\n    <div class=\"detailsPage__container\">\n    <figure>\n    <img class=\"poster\" src=\"".concat(imgFilmUrl).concat(data.poster_path, "\" alt=\"film-poster\" />\n    </figure>\n    <h2 class=\"title\">").concat(data.title, "</h2>\n    <table>\n    <tr>\n    <td>vote / votes</td>\n    <td>").concat(data.vote_average, " / ").concat(data.vote_count, "</td>\n    </tr>\n    <tr>\n    <td>original title</td>\n    <td>").concat(data.original_title, "</td>\n    </tr>\n    <tr>\n    <td>popularity</td>\n    <td>").concat(data.popularity, "</td>\n    </tr>\n    <tr>\n    <td>genre</td>\n    <td>").concat(data.genres[0].name, "</td>\n    </tr>\n    </table>\n    <h2 class=\"title\">About</h2>\n    <p class=\"text\">\n    ").concat(data.overview, "\n    </p>\n    </div>\n    </section>");
   var objToString = element.toString();
-  openModalWindow();
-  renderListElement(objToString);
+  popularFilmsData.flag = true;
+  renderList(objToString);
 }
-
-function openModalWindow() {
-  refsFilmData.modal.classList.add('visible');
-}
-
-function renderListElement(data) {
-  refsFilmData.modalGuts.innerHTML = '';
-  refsFilmData.modalGuts.insertAdjacentHTML('afterbegin', data);
-}
-
-function closeModal(e) {
-  if (e.target !== e.currentTarget) {
-    refsFilmData.modal.classList.remove('visible');
-  }
-}
-
-refsFilmData.modal.addEventListener('click', closeModal);
 "use strict";
 
 var refs = {
@@ -170,6 +163,12 @@ function parseData(data) {
 "use strict";
 
 function renderList(data) {
+  popularFilmsData.copyDomElement = popularityRefs.filmsList.cloneNode(true);
+  console.log(popularFilmsData.copyDomElement);
   clearList();
   popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
+
+  if (popularFilmsData.flag) {
+    popularityRefs.pagPage.classList.add('hidden'), popularityRefs.btnNext.classList.add('hidden');
+  }
 }
