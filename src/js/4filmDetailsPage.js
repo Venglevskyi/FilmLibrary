@@ -58,23 +58,7 @@ function parseFilmData(data) {
     </div>
     </section>`;
   const objToString = element.toString();
-  openModalWindow();
-  renderListElement(objToString);
+  popularFilmsData.flag = true;
+  renderList(objToString);
 }
 
-function openModalWindow() {
-  refsFilmData.modal.classList.add('visible');
-}
-
-function renderListElement(data) {
-  refsFilmData.modalGuts.innerHTML = '';
-  refsFilmData.modalGuts.insertAdjacentHTML('afterbegin', data);
-}
-
-function closeModal(e) {
-  if (e.target !== e.currentTarget) {
-    refsFilmData.modal.classList.remove('visible');
-  }
-}
-
-refsFilmData.modal.addEventListener('click', closeModal);
