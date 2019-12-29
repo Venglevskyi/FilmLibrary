@@ -23,40 +23,38 @@ function getData(filmId) {
 }
 
 function parseFilmData(data) {
-  const element = `<section class="detailsPage container">
-    <div class="detailsPage__container container">
-      <figure>
-        <img class="poster" src="${imgFilmUrl}${data.poster_path}" alt="film-poster" />
-      </figure>
-      <div class="film-info__container">
-        <h2 class="title film-title">${data.title}</h2>
-        <table>
-          <tr>
-            <td>vote / votes</td>
-            <td>${data.vote_average} / ${data.vote_count}</td>
-          </tr>
-          <tr>
-            <td>original title</td>
-            <td>${data.original_title}</td>
-          </tr>
-          <tr>
-            <td>popularity</td>
-            <td>${data.popularity}</td>
-          </tr>
-          <tr>
-            <td>genre</td>
-            <td>${data.genres[0].name}</td>
-          </tr>
-        </table>
-  
-        <h2 class="title film-title">About</h2>
-        <p class="text">
-        ${data.overview}
-        </p>
-      </div>
+  const element = `<section class="detailsPage">
+    <div class="detailsPage__container">
+    <figure>
+    <img class="poster" src="${imgFilmUrl}${data.poster_path}" alt="film-poster" />
+    </figure>
+    <div class="film-info__container">
+    <h2 class="title film-title">${data.title}</h2>
+    <table>
+    <tr>
+    <td>vote / votes</td>
+    <td>${data.vote_average} / ${data.vote_count}</td>
+    </tr>
+    <tr>
+    <td>original title</td>
+    <td>${data.original_title}</td>
+    </tr>
+    <tr>
+    <td>popularity</td>
+    <td>${data.popularity}</td>
+    </tr>
+    <tr>
+    <td>genre</td>
+    <td>${data.genres[0].name}</td>
+    </tr>
+    </table>
+    <h2 class="title">About</h2>
+    <p class="text">
+    ${data.overview}
+    </p>
     </div>
-  </section>
-  `;
+    </div>
+    </section>`;
   const objToString = element.toString();
   popularFilmsData.flag = true;
   renderList(objToString);

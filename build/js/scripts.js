@@ -4,7 +4,8 @@ var popularityRefs = {
   filmsList: document.querySelector('.films-list'),
   btnPrev: document.querySelector('.pagination__btn--prev'),
   pagPage: document.querySelector('.pagination__page'),
-  btnNext: document.querySelector('.pagination__btn--next')
+  btnNext: document.querySelector('.pagination__btn--next'),
+  homePageBtn: document.querySelector('.home-btn')
 };
 var popularityFilms = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=bd2cd46f09d0c01b4fe8699d010953c1&language=ru';
 var popularFilmsData = {
@@ -22,6 +23,9 @@ var popularFilmsData = {
   }
 };
 document.addEventListener('DOMContentLoaded', popularFilmsData.getDataPopularFilms());
+popularityRefs.homePageBtn.addEventListener('click', function () {
+  return location.reload();
+});
 popularityRefs.btnPrev.addEventListener('click', prevPage);
 popularityRefs.btnNext.addEventListener('click', nextPage);
 "use strict";
@@ -66,12 +70,13 @@ serchRefs.input.addEventListener('input', getInputValue);
 "use strict";
 
 var pageRefs = {
-  pagPage: document.querySelector('.pagination__page')
+  pagPage: document.querySelector('.pagination__page span')
 };
 
 function prevPage() {
   if (popularFilmsData.flag) {
     clearList();
+    popularFilmsData.flag = false;
     popularityRefs.pagPage.classList.remove('hidden'), popularityRefs.btnNext.classList.remove('hidden');
     popularityRefs.filmsList.appendChild(popularFilmsData.copyDomElement);
   }
@@ -82,12 +87,15 @@ function prevPage() {
     findSettings.searchFromDB(findSettings.serchQuery);
   }
 
-  ;
-
   if (popularFilmsData.page > 1) {
     popularFilmsData.page -= 1;
-    popularityRefs.pagPage.textContent = popularFilmsData.page;
+    pageRefs.pagPage.textContent = popularFilmsData.page;
     popularFilmsData.getDataPopularFilms();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
   } else return;
 }
 
@@ -100,6 +108,11 @@ function nextPage() {
     popularFilmsData.page += 1;
     pageRefs.pagPage.textContent = popularFilmsData.page;
     popularFilmsData.getDataPopularFilms();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
   }
 }
 "use strict";
@@ -131,7 +144,7 @@ function getData(filmId) {
 }
 
 function parseFilmData(data) {
-  var element = "<section class=\"detailsPage container\">\n    <div class=\"detailsPage__container container\">\n      <figure>\n        <img class=\"poster\" src=\"".concat(imgFilmUrl).concat(data.poster_path, "\" alt=\"film-poster\" />\n      </figure>\n      <div class=\"film-info__container\">\n        <h2 class=\"title film-title\">").concat(data.title, "</h2>\n        <table>\n          <tr>\n            <td>vote / votes</td>\n            <td>").concat(data.vote_average, " / ").concat(data.vote_count, "</td>\n          </tr>\n          <tr>\n            <td>original title</td>\n            <td>").concat(data.original_title, "</td>\n          </tr>\n          <tr>\n            <td>popularity</td>\n            <td>").concat(data.popularity, "</td>\n          </tr>\n          <tr>\n            <td>genre</td>\n            <td>").concat(data.genres[0].name, "</td>\n          </tr>\n        </table>\n  \n        <h2 class=\"title film-title\">About</h2>\n        <p class=\"text\">\n        ").concat(data.overview, "\n        </p>\n      </div>\n    </div>\n  </section>\n  ");
+  var element = "<section class=\"detailsPage\">\n    <div class=\"detailsPage__container\">\n    <figure>\n    <img class=\"poster\" src=\"".concat(imgFilmUrl).concat(data.poster_path, "\" alt=\"film-poster\" />\n    </figure>\n    <div class=\"film-info__container\">\n    <h2 class=\"title film-title\">").concat(data.title, "</h2>\n    <table>\n    <tr>\n    <td>vote / votes</td>\n    <td>").concat(data.vote_average, " / ").concat(data.vote_count, "</td>\n    </tr>\n    <tr>\n    <td>original title</td>\n    <td>").concat(data.original_title, "</td>\n    </tr>\n    <tr>\n    <td>popularity</td>\n    <td>").concat(data.popularity, "</td>\n    </tr>\n    <tr>\n    <td>genre</td>\n    <td>").concat(data.genres[0].name, "</td>\n    </tr>\n    </table>\n    <h2 class=\"title\">About</h2>\n    <p class=\"text\">\n    ").concat(data.overview, "\n    </p>\n    </div>\n    </div>\n    </section>");
   var objToString = element.toString();
   popularFilmsData.flag = true;
   renderList(objToString);

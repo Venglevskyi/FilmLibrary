@@ -1,20 +1,28 @@
 .detailsPage__container {
-  padding: 0;
+  padding: 25;
   @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 auto;
     max-width: 100%;
+    padding: 0;
   }
 }
 
 .film-info__container {
   max-width: 27.5rem;
   margin-bottom: 3rem;
+  @media screen and (min-width: 768px) {
+    max-width: 60%;
+  }
 }
 
-.film-title {
+.title {
   margin-bottom: 1rem;
+  font-family: 'RobotoMedium';
+  font-family: 'Roboto';  
+  font-weight: 500;
+  color: #372c48;
 }
 
 figure {
@@ -30,9 +38,12 @@ figure {
 
 table {
   font-family: $main-font-stack;
+  font-family: 'Roboto';
+  font-weight: 400;
   font-size: 1.4rem;
   border-collapse: collapse;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 td {
@@ -52,9 +63,9 @@ td:nth-child(even) {
   padding-right: 0;
 }
 
-.detailsPage__container {
-  padding: 2.5rem;
-}
+// .detailsPage__container {
+//   padding: 2.5rem;
+// }
 
 figure {
   margin: 0 0 2rem;
@@ -66,26 +77,34 @@ figure {
   height: auto;
 }
 
-table {
-  font-family: $main-font-stack;
-  font-size: 1.4rem;
-  border-collapse: collapse;
-  margin-bottom: 3rem;
-}
+// table {
+//   font-family: $main-font-stack;
+//   font-size: 1.4rem;
+//   border-collapse: collapse;
+//   margin-bottom: 3rem;
+// }
 
-td {
-  padding: 1rem;
-}
+// td {
+//   padding: 1rem;
+// }
 
-tr:nth-child(odd) {
-  background: $main-background-color;
-}
+// tr:nth-child(odd) {
+//   background: $main-background-color;
+// }
 
-td:nth-child(odd) {
-  padding-right: 0;
-}
+// td:nth-child(odd) {
+//   padding-right: 0;
+// }
 
-td:nth-child(even) {
-  padding-left: 3rem;
-  padding-right: 0;
+// td:nth-child(even) {
+//   padding-left: 3rem;
+//   padding-right: 0;
+// }
+
+.text {
+  font-family: 'Roboto';  
+  font-weight: 400;
+  font-size: 14px;
+  color: #372c48;
+  line-height: 18px;
 }

@@ -3,6 +3,7 @@ const popularityRefs = {
   btnPrev: document.querySelector('.pagination__btn--prev'),
   pagPage: document.querySelector('.pagination__page'),
   btnNext: document.querySelector('.pagination__btn--next'),
+  homePageBtn: document.querySelector('.home-btn'),
 };
 
 const popularityFilms =
@@ -24,5 +25,6 @@ document.addEventListener(
   'DOMContentLoaded',
   popularFilmsData.getDataPopularFilms(),
 );
+popularityRefs.homePageBtn.addEventListener('click', () => location.reload());
 popularityRefs.btnPrev.addEventListener('click', prevPage);
 popularityRefs.btnNext.addEventListener('click', nextPage);
