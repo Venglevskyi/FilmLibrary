@@ -1,6 +1,5 @@
 function renderList(data) {
   popularFilmsData.copyDomElement = popularityRefs.filmsList.cloneNode(true)
-  console.log(popularFilmsData.copyDomElement)
   
   clearList();
   popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
