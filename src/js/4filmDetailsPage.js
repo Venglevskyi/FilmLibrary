@@ -30,7 +30,8 @@ function parseFilmData(data) {
     <figure>
     <img class="poster" src="${imgFilmUrl}${data.poster_path}" alt="film-poster" />
     </figure>
-    <h2 class="title">${data.title}</h2>
+    <div class="film-info__container">
+    <h2 class="title film-title">${data.title}</h2>
     <table>
     <tr>
     <td>vote / votes</td>
@@ -53,6 +54,7 @@ function parseFilmData(data) {
     <p class="text">
     ${data.overview}
     </p>
+    </div>
     </div>
     </section>`;
   const objToString = element.toString();
