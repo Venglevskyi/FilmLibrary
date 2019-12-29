@@ -7,7 +7,7 @@ function prevPage() {
     clearList();
     popularFilmsData.flag = false;
     popularityRefs.pagPage.classList.remove('hidden'),
-      popularityRefs.btnNext.classList.remove('hidden');
+    popularityRefs.btnNext.classList.remove('hidden');
     popularityRefs.filmsList.appendChild(popularFilmsData.copyDomElement);
   }
   if (findSettings.page > 1) {
@@ -42,4 +42,29 @@ function nextPage() {
       behavior: 'auto',
     });
   }
+}
+
+function toLibrary(event) {
+  event.preventDefault();
+
+  popularityRefs.homePage.classList.add('hidden');
+  popularityRefs.libraryPage.classList.remove('hidden');
+
+  const library = localStorage.getItem('library');
+  
+  if (!library) return;
+
+  const libraryIds = library.split(',').filter(id => id !== '');
+  
+  const baseUrl = 'https://api.themoviedb.org/3/movie/';
+  const apiKey = '?api_key=bd2cd46f09d0c01b4fe8699d010953c1&language=ru';
+  const imgFilmUrl = 'https://image.tmdb.org/t/p/w200';
+
+  Promise.all(libraryIds.map(id => {
+    return fetch(`${baseUrl}${id}${apiKey}`)
+      .then(response => response.json());
+  })).then(res => {
+    renderLibrary(res);
+    document.querySelector('.library__empty-list').remove();
+  });
 }

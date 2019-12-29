@@ -1,5 +1,9 @@
 const popularityRefs = {
   filmsList: document.querySelector('.films-list'),
+  homePage: document.querySelector('.homepage'),
+  libraryPage: document.querySelector('.library'),
+  libraryList: document.querySelector('.library-btn'),
+  libraryListLi: document.querySelector('.library-films-list'),
   btnPrev: document.querySelector('.pagination__btn--prev'),
   pagPage: document.querySelector('.pagination__page'),
   btnNext: document.querySelector('.pagination__btn--next'),
@@ -28,3 +32,4 @@ document.addEventListener(
 popularityRefs.homePageBtn.addEventListener('click', () => location.reload());
 popularityRefs.btnPrev.addEventListener('click', prevPage);
 popularityRefs.btnNext.addEventListener('click', nextPage);
+popularityRefs.libraryList.addEventListener('click', toLibrary);

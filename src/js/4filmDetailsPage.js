@@ -54,8 +54,19 @@ function parseFilmData(data) {
     </p>
     </div>
     </div>
+    <button data-id="${data.id}" class="button button__add-to-library">Add to library</button>
     </section>`;
   const objToString = element.toString();
   popularFilmsData.flag = true;
   renderList(objToString);
+
+  document.querySelector('.button__add-to-library').addEventListener('click', addToLibrary);
+}
+
+function addToLibrary(event) {
+  const filmId = event.target.getAttribute('data-id');
+  const currentLibarary = localStorage.getItem('library') || '';
+  const newLibarary = [filmId, ...currentLibarary.split(',')];
+
+  localStorage.setItem('library', newLibarary);
 }
