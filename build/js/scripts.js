@@ -164,7 +164,7 @@ var imgUrl = 'https://image.tmdb.org/t/p/w200';
 
 function parseData(data) {
   var elements = data.map(function (e) {
-    return "<li \" class=\"films-list__item\">\n        <a id=\"".concat(e.id, "\" class=\"films-list__item__block\" href=\"#\">\n          <img\n          class=\"films-list__image\"\n            src=\"").concat(imgUrl).concat(e.poster_path ? e.poster_path : e.backdrop_path, "\"\n            alt=\"Here's how it looks!\"\n            width=\"298\"\n            height=\"156\"\n          />\n          <p class=\"films-list__item__block__filmname\">").concat(e.title, "</p>\n        </a>\n      </li>");
+    return "<li \" class=\"films-list__item\">\n        <a id=\"".concat(e.id, "\" class=\"films-list__item__block\" href=\"#\">\n          <img\n          class=\"films-list__image\"\n            src=\"").concat(imgUrl).concat(e.poster_path ? e.poster_path : e.backdrop_path, "\"\n            alt=\"Here's how it looks!\"\n            width=\"298\"\n            height=\"156\"\n          />\n          <p class=\"films-list__item__block__filmname\">").concat(e.title, "</p>\n        </a>\n        <div class=\"but-watch-like\">\n        <button type=\"button\" class=\"button but-watch\">Watched</button>\n        <button type=\"button\" class=\"button but-like\">Queue</button>\n        </div>\n      </li>");
   }).join('');
   renderList(elements);
 }

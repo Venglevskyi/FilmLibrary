@@ -68,13 +68,13 @@
 
   &__item {
     display: inline-block;
+    margin-bottom: 12px;
 
     &__block {
       display: block;
       position: relative;
       width: 298px;
       height: 156px;
-      margin-bottom: 12px;
       border-radius: 10px;
       cursor: pointer;
       overflow: hidden;
@@ -115,9 +115,11 @@
     }
   }
 }
-.hidden{
+
+.hidden {
   display: none;
 }
+
 .pagination {
   display: flex;
   justify-content: space-evenly;
@@ -177,4 +179,19 @@
       transform: translate(-50%, -50%);
     }
   }
+}
+
+.but-watch-like {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  display: block;
+  width: 45%;
+  font-family: $main-font-stack;
+  font-size: 1.6rem;
+  padding: 1rem 0;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
 }

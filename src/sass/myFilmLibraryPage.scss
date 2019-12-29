@@ -1,0 +1,33 @@
+.library {
+  display: none;
+}
+
+.lib-navigation {
+  margin: 0 auto;
+  width: 100%;
+  font-family: $main-font-stack;
+  font-size: 1.6rem;
+  color: #000000;
+}
+
+.lib-navigation__list {
+  display: flex;
+  justify-content: center;
+}
+
+.lib-navigation__but {
+  padding: 1rem 4.2rem;
+  border: none;
+  background-color: #ffffff;
+  border-bottom: 0.2rem solid #9c99a5;
+  transition: background-color 0.2s linear;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-bottom: none;
+    margin-bottom: 0.2rem;
+    background-color: $main-background-color;
+    color: #ffffff;
+  }
+}
