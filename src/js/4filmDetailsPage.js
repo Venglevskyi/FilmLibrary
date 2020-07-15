@@ -4,8 +4,8 @@ const refsFilmData = {
 };
 
 function getUserInput(e) {
-  if (e.target === e.currentTarget) return;
-  const filmID = e.target.id;
+  if (e.target.dataset.id === e.currentTarget.dataset.id) return;
+  const filmID = e.target.dataset.id;
   getData(filmID);
 }
 
@@ -13,7 +13,7 @@ refsFilmData.userInput.addEventListener('click', getUserInput);
 
 const baseUrl = 'https://api.themoviedb.org/3/movie/';
 const apiKey = '?api_key=bd2cd46f09d0c01b4fe8699d010953c1&language=ru';
-const imgFilmUrl = 'https://image.tmdb.org/t/p/w200';
+const imgFilmUrl = 'https://image.tmdb.org/t/p/w500';
 
 function getData(filmId) {
   fetch(`${baseUrl}${filmId}${apiKey}`)
@@ -23,13 +23,13 @@ function getData(filmId) {
 }
 
 function parseFilmData(data) {
-  const element = `<section class="detailsPage">
-    <div class="detailsPage__container">
-    <figure>
+  const element = `
+    <div class="detailsPage-description container">
+
     <img class="poster" src="${imgFilmUrl}${data.poster_path}" alt="film-poster" />
-    </figure>
-    <div class="film-info__container">
-    <h2 class="title film-title">${data.title}</h2>
+
+    <div class="film-info">
+    <h2 class="film-info__headline">${data.title}</h2>
     <table>
     <tr>
     <td>vote / votes</td>
@@ -48,19 +48,25 @@ function parseFilmData(data) {
     <td>${data.genres[0].name}</td>
     </tr>
     </table>
-    <h2 class="title">About</h2>
-    <p class="text">
+    <p class="film-info__title">About</p>
+    <p class="film-info__about">
     ${data.overview}
     </p>
     </div>
     </div>
+    <div class="pagination container">
+    <button class="pagination__btn--prev" type="button">
+      <span>Back</span>
+    </button>
     <button data-id="${data.id}" class="button button__add-to-library">Add to library</button>
-    </section>`;
+  </div>`;
   const objToString = element.toString();
   popularFilmsData.flag = true;
-  renderList(objToString);
+  renderDetailsFilm(objToString);
 
-  document.querySelector('.button__add-to-library').addEventListener('click', addToLibrary);
+  document
+    .querySelector('.button__add-to-library')
+    .addEventListener('click', addToLibrary);
 }
 
 function addToLibrary(event) {

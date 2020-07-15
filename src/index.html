@@ -1,23 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>FilmLibrary</title>
+    <title>Filmoteka</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/notie/dist/notie.min.css"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body>   
-    //=./html/header.html
-    //=./html/main/homePage.html
-    <!-- //=./html/main/detailsPage.html -->
-    //=./html/main/myFilmLibraryPage.html
-    //=./html/footer.html
-    <a href="#" class="back-to-top"></a>    
+  <body>
+    <header class="header">
+      <div class="container site-nav">
+        <a href="#">
+          <img src="./images/icons/icon-film.png" alt="" />
+        </a>
+        <nav>
+          <ul class="site-menu">
+            <li class="menu-item">
+              <a class="link menu-item__list home-btn" href="#">home</a>
+            </li>
+            <li class="menu-item">
+              <a class="link menu-item__list library-btn" href="#"
+                >my library</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="homepage">
+        <form action="#" class="searchform">
+          <label for="#" class="searchform__field"
+            ><input
+              type="text"
+              class="searchform__field__input"
+              placeholder="Write movie name and click Enter"
+            />
+          </label>
+        </form>
+
+        <ul class="films-list container"></ul>
+
+        <div class="pagination container">
+          <button class="pagination__btn--prev" type="button">
+            <span>Prev</span>
+          </button>
+          <div class="pagination__page"><span>1</span></div>
+          <button class="pagination__btn--next" type="button">
+            <span>Next</span>
+          </button>
+        </div>
+      </section>
+      <section class="detailsPage hidden"></section>
+      <section class="library hidden">
+        <div class="container">
+          <ul class="library-films-list"></ul>
+          <span class="library__empty-list">You library is empty</span>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container">
+        <p class="text-title">Made by Wind Group</p>
+        <!-- <a href="#" class="back-to-top"></a> -->
+      </div>
+    </footer>
+
     <!-- inject:js -->
     <script src="./js/scripts.js"></script>
+    <script src="https://unpkg.com/notie"></script>
     <!-- endinject -->
   </body>
 </html>
-

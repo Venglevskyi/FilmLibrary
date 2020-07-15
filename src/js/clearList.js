@@ -4,4 +4,5 @@ const refs = {
 
 function clearList() {
   refs.filmsList.innerHTML = '';
+  pageRefs.detailsPage.innerHTML = '';
 }

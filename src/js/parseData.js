@@ -1,21 +1,19 @@
-const imgUrl = 'https://image.tmdb.org/t/p/w200';
+const imgUrl = 'https://image.tmdb.org/t/p/w500';
 
 function parseData(data) {
-  const elements = data
+  const elementsMarkup = data
     .map(e => {
-      return `<li " class="films-list__item">
-        <a id="${e.id}" class="films-list__item__block" href="#">
+      return `<li class="films-list__item">
           <img
           class="films-list__image"
-            src="${imgUrl}${e.poster_path ? e.poster_path : e.backdrop_path}"
+            src="${imgUrl}/${e.poster_path}"
+            data-id = "${e.id}"
             alt="Here's how it looks!"
-            width="298"
-            height="156"
           />
-          <p class="films-list__item__block__filmname">${e.title}</p>
-        </a>
+          <h2 class="films-list__title">${e.title}</h2>
+          <span class="films-list__rate">${e.vote_average}</span>
       </li>`;
     })
     .join('');
-  renderList(elements);
+  renderList(elementsMarkup);
 }

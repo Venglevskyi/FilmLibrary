@@ -1,12 +1,14 @@
 const popularityRefs = {
   filmsList: document.querySelector('.films-list'),
   homePage: document.querySelector('.homepage'),
+  detailsPage: document.querySelector('.detailsPage'),
   libraryPage: document.querySelector('.library'),
   libraryList: document.querySelector('.library-btn'),
   libraryListLi: document.querySelector('.library-films-list'),
   btnPrev: document.querySelector('.pagination__btn--prev'),
   pagPage: document.querySelector('.pagination__page'),
   btnNext: document.querySelector('.pagination__btn--next'),
+  searchForm: document.querySelector('.searchform'),
   homePageBtn: document.querySelector('.home-btn'),
 };
 

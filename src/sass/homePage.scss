@@ -1,3 +1,5 @@
+@import './libs/fonts.scss';
+
 .searchform {
   padding: 22px 0px 22px 0px;
   box-shadow: 0px 5px 10px rgba($color: #000000, $alpha: 0.6);
@@ -36,7 +38,7 @@
     }
 
     &__input {
-      font-family: 'RobotoRegular';
+      font-family: RobotoRegular;
       font-size: 16px;
       color: #000000;
       line-height: 1.5;
@@ -46,7 +48,7 @@
       border: none;
 
       &::placeholder {
-        font-family: 'RobotoRegular';
+        font-family: RobotoRegular;
         font-size: 14.4px;
         color: #000000;
       }
@@ -54,70 +56,94 @@
   }
 }
 
-.container {
-  position: relative;
-}
+@media screen and (min-width: 320px) {
+  .films-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px 0;
+    list-style: none;
 
-.films-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0;
-  margin-bottom: 18px;
-
-  &__item {
-    display: inline-block;
-
-    &__block {
-      display: block;
+    &__item {
+      width: 280px;
       position: relative;
-      width: 298px;
-      height: 156px;
-      margin-bottom: 12px;
-      border-radius: 10px;
+      margin: 0 auto 20px;
+      box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25),
+        0px 2px 2px rgba(0, 0, 0, 0.08), 0px 1px 1px rgba(0, 0, 0, 0.16);
       cursor: pointer;
-      overflow: hidden;
+      transition: transform 0.2s linear;
+    }
 
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 2;
-        background-image: linear-gradient(
-          to bottom,
-          rgba(35, 31, 32, 0) 70%,
-          rgba(35, 31, 32, 1) 100%
-        );
-        border-radius: 10px;
-      }
+    &__item:hover {
+      transform: scale(1.05);
+    }
 
-      &__filmname {
-        font-family: 'Roboto';
-        font-weight: 500;
-        font-size: 12.3px;
-        color: #ffffff;
-        margin: 0;
-        position: absolute;
-        left: 4%;
-        bottom: 9%;
-        z-index: 3;
-      }
+    &__item:last-child {
+      margin-bottom: 0;
+    }
 
-      & img {
-        border-radius: 10px;
-        width: 100%;
-        height: auto;
-      }
+    &__image {
+      display: block;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    &__title {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      padding-left: 10px;
+      font-family: RobotoMedium;
+      font-weight: 700;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    &__rate {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 10px 10px 0 0;
+      width: 40px;
+      height: 20px;
+      color: $font-semi-color;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 8px;
+      background-color: #ffffff;
     }
   }
 }
-.hidden{
+
+@media screen and (min-width: 768px) {
+  .films-list {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around;
+
+    &__item {
+      flex-basis: 280px;
+      margin: 0 0 20px 0;
+    }
+
+    &__item:nth-last-child(-n + 2) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .films-list__item:nth-last-child(-n + 2) {
+    margin-bottom: 20px;
+  }
+}
+
+.hidden {
   display: none;
 }
+
 .pagination {
   display: flex;
   justify-content: space-evenly;
@@ -139,6 +165,10 @@
       rgba(250, 250, 250, 1) 0%,
       rgba(240, 240, 240, 1) 100%
     );
+    box-shadow: 0 1px #ffffff33 inset, 0 3px 5px #00010680,
+      0 0 1px 1px #00010633;
+    text-shadow: 0 -1px 2px #00000033;
+    transition: 0.2s ease-in-out;
 
     & span {
       font-family: 'Roboto';

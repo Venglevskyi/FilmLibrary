@@ -1,53 +1,72 @@
+@media screen and (min-width: 320px) {
+  .header {
+    background-color: $main-background-color;
+  }
 
-.site-header { 
-  background-color: $main-background-color;
+  .container {
+    width: 320px;
+    margin: 0 auto;
+  }
+
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .site-menu {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    text-transform: uppercase;
+    list-style: none;
+    font-family: $main-font-stack;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .menu-item {
+    margin-right: 30px;
+    position: relative;
+  }
+
+  .menu-item:last-child {
+    margin-right: 0;
+  }
+
+  .menu-item__list::after {
+    content: '';
+    background: $font-inverse-color;
+    display: block;
+    height: 3px;
+    width: 0;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.2s linear;
+  }
+
+  .menu-item__list:hover::after,
+  .menu-item__list:focus::after {
+    width: 100%;
+  }
 }
 
-.header-container {
-  display: flex; 
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 20px;
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+
+  .site-nav {
+    padding: 20px;
+  }
 }
 
-.site-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  text-transform: uppercase;
-  font-family: $main-font-stack;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 0;
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
 }
-
-.site-menu__item { 
-  width: 100px;
-  text-align: center;
-  margin-right: 20px;
-  position: relative;  
-}
-
-.site-menu__item:last-child {
-  margin-right: 0;
-}
-
-.site-menu__item_list::after {
-  content: '';
-  background: $font-inverse-color;
-  display: block;
-  height: 3px;
-  position: absolute;
-  left: 50%;
-  width: 0;
-  transform: translateX(-50%);
-  transition: width 0.2s linear;
-  margin-top: 12px;
-}
-
-.site-menu__item_list:hover::after,
-.site-menu__item_list:focus::after {
-  width: 100px;
-}
-

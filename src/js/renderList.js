@@ -1,11 +1,13 @@
 function renderList(data) {
-  popularFilmsData.copyDomElement = popularityRefs.filmsList.cloneNode(true)
-  
   clearList();
-  popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
 
-  if(popularFilmsData.flag){
-    popularityRefs.pagPage.classList.add('hidden'),
-    popularityRefs.btnNext.classList.add('hidden')
-  } 
+  popularityRefs.filmsList.insertAdjacentHTML('afterbegin', data);
+}
+
+function renderDetailsFilm(data) {
+  clearList();
+  popularityRefs.detailsPage.insertAdjacentHTML('afterbegin', data);
+  popularityRefs.homePage.classList.add('hidden');
+  popularityRefs.detailsPage.classList.toggle('hidden');
+  popularityRefs.libraryPage.classList.add('hidden');
 }
